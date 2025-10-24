@@ -16,3 +16,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint Ruby files
+        run: bin/rubocop --parallel
