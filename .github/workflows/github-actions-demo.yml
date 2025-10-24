@@ -22,3 +22,7 @@ jobs:
     steps:
       - name: Lint Ruby files
         run: bin/rubocop --parallel
+  test:
+    steps:
+      - name: Run tests
+          run: rspec
