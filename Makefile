@@ -2,6 +2,7 @@
 
 default: lint
 
+
 install:
 	bundle install
 lint: install
