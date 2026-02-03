@@ -2,13 +2,12 @@ require_relative "../lib/hexlet_code"
 
 User = Struct.new(:name, :job, :gender, keyword_init: true)
 
-
 RSpec.describe HexletCode do
-  let(:user) { User.new(name: 'John') }
+  let(:user) { User.new(name: "John") }
 
-  it 'generates form tag' do
+  it "generates form tag" do
     form = described_class.form_for(user)
-    expect(form).to include('<form action="#" method="post">')
+    expect(form).to eq('<form action="#" method="POST"/>')
   end
 
   # it 'includes input fields' do
