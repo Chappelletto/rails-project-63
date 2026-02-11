@@ -8,4 +8,4 @@ install:
 lint: install
 	bundle exec rubocop
 test: install
-	bundle exec rspec
+	bundle exec minitest
