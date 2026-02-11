@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require_relative "hexlet_code/version"
-require "active_support"
-require "active_support/core_ext"
+# require "active_support"
+# require "active_support/core_ext"
 
 module HexletCode
   autoload :Tag, "hexlet_code/tag.rb"
-  autoload :FormTag, "hexlet_code/form_tag.rb"
-  autoload :LabelTag, "hexlet_code/label_tag.rb"
-  autoload :TextareaTag, "hexlet_code/textarea_tag.rb"
+  autoload :FormBuilder, "hexlet_code/form_builder.rb"
+  autoload :FormRenderer, "hexlet_code/form_renderer.rb"
+  autoload :Tags, "hexlet_code/tags.rb"
   class Error < StandardError; end
 
-  def self.form_for(object, options = {})
-    form = FormTag.new(object)
-    yield form if block_given?
-
-    form.to_html
+  def self.form_for(model, url: "#", method: "post")
+    pp "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"
+    form_builder = FormBuilder.new(model)
+    yield form_builder
+    FormRenderer.render(form_builder.form, url, method)
   end
 end
 
@@ -47,16 +49,16 @@ end
 # #   form_builder.input :job, as: :text
 # # end
 
-# User = Struct.new(:name, :job, :gender, keyword_init: true)
-# user = User.new name: "rob", job: "hexlet", gender: "m"
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new name: "rob", job: "hexlet", gender: "m"
 
-# form_1 = HexletCode.form_for user do |form|
-#   form.input :name, class: "user-input"
-#   form.input :job, as: :text, cols: "50", rows: "50"
-#   form.submit
-#   # form.input :age
-# end
-# puts form_1
+form_1 = HexletCode.form_for user do |form|
+  form.input :name, class: "user-input"
+  form.input :job, as: :text, cols: "50", rows: "50"
+  form.submit
+  # form.input :age
+end
+puts form_1
 
 # # Задачи
 # # Реализуйте label для каждого инпута

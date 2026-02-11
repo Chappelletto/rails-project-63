@@ -1,33 +1,21 @@
-class Tag
-  attr_accessor :name, :attributes, :children
+# frozen_string_literal: true
 
-  def initialize(name, **attributes)
-    @name = name
-    @attributes = attributes
-    @children = []
-  end
+module HexletCode
+  class Tag
+    def self.build(name, attributes = {})
+      singled_tags = %w[img br input]
 
-  def add_children(children)
-    @children << children
-  end
-  alias_method :<<, :add_children
+      builded_attributes = build_attributes(attributes)
 
-  def to_html
-    if @children.any?
-      "<#{@name}#{render_attributes}>" + render_children + "</#{@name}>"
-    else
-      "<#{@name}#{render_attributes}/>"
+      return "<#{name}#{builded_attributes}>" if singled_tags.include? name
+
+      "<#{name}#{builded_attributes}>#{yield}</#{name}>"
     end
-  end
 
-  def render_attributes
-    return "" if @attributes.none?
-
-    rendered = @attributes.map { |key, value| "#{key}=\"#{value}\"" }.join(" ")
-    " " + rendered
-  end
-
-  def render_children
-    @children.map { |c| c.to_html }.join
+    def self.build_attributes(attributes)
+      attributes.compact.map do |key, value|
+        " #{key}=\"#{value}\""
+      end.join
+    end
   end
 end
