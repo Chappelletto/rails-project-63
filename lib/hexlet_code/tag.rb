@@ -1,21 +1,30 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class Tag
-    def self.build(name, attributes = {})
-      singled_tags = %w[img br input]
+  module Tag
+    class << self
+      SINGLE_TAGS = %w[br img input a].freeze
 
-      builded_attributes = build_attributes(attributes)
+      private_constant :SINGLE_TAGS
 
-      return "<#{name}#{builded_attributes}>" if singled_tags.include? name
+      def build(tag_name, **attrs)
+        open_tag = "<#{tag_name}#{build_attrs(attrs)}>"
+        return open_tag if SINGLE_TAGS.include? tag_name
 
-      "<#{name}#{builded_attributes}>#{yield}</#{name}>"
-    end
+        body = yield if block_given?
+        "#{open_tag}#{body}</#{tag_name}>"
+      end
 
-    def self.build_attributes(attributes)
-      attributes.compact.map do |key, value|
-        " #{key}=\"#{value}\""
-      end.join
+      private
+
+      def build_attrs(attrs)
+        return "" if attrs.empty?
+
+        attrs.entries.map do |pair|
+          key, value = pair
+          " #{key}=\"#{value}\""
+        end.join
+      end
     end
   end
 end
