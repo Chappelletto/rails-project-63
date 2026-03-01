@@ -7,5 +7,5 @@ install:
 	bundle install
 lint: install
 	bundle exec rubocop
-test: install
-	bundle exec minitest
+tests:
+	rake test
