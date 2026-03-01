@@ -8,6 +8,7 @@ class HexletCodeTest < Minitest::Test
     expected = read_fixture('empty_form')
 
     actual = HexletCode.form_for user do |f|
+      f.input :name
     end
 
     assert { actual == expected }
