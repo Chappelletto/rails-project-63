@@ -9,7 +9,6 @@ class HexletCodeTest < Minitest::Test
 
     actual = HexletCode.form_for user do |f|
     end
-    # rubocop:enable Lint/EmptyBlock
 
     assert { actual == expected }
   end
