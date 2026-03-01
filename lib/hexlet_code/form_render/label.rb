@@ -2,10 +2,12 @@
 
 module HexletCode
   module FormRender
+    # Класс для рендеринга подписи (label)
+    # Генерирует HTML для подписи к полю формы
     class Label
       class << self
         def render(name)
-          label = Tag.build("label", for: name) { name.capitalize }
+          label = Tag.build('label', for: name) { name.capitalize }
           element = yield if block_given?
           "#{label}#{element}"
         end

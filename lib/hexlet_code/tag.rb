@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module HexletCode
+  # Модуль для генерации HTML-тегов
+  # Позволяет создавать HTML-элементы с атрибутами и содержимым
   module Tag
     class << self
       SINGLE_TAGS = %w[br img input a].freeze
@@ -18,7 +20,7 @@ module HexletCode
       private
 
       def build_attrs(attrs)
-        return "" if attrs.empty?
+        return '' if attrs.empty?
 
         attrs.entries.map do |pair|
           key, value = pair

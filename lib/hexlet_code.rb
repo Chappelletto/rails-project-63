@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
-require_relative "hexlet_code/version"
-
+require_relative 'hexlet_code/version'
+# Главный модуль гема HexletCode
+# Предоставляет DSL для генерации HTML-форм
 module HexletCode
-  autoload :Tag, "hexlet_code/tag"
-  autoload :FormSchema, "hexlet_code/form_schema"
-  autoload :FormRender, "hexlet_code/form_render/form"
+  # Модуль для генерации HTML-тегов
+  # Позволяет создавать HTML-элементы с атрибутами и содержимым
+  autoload :Tag, 'hexlet_code/tag'
+  autoload :FormSchema, 'hexlet_code/form_schema'
+  autoload :FormRender, 'hexlet_code/form_render/form'
 
   class << self
     def form_for(entity, **form_attrs)
