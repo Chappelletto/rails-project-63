@@ -5,7 +5,7 @@ module HexletCode
   # Позволяет создавать HTML-элементы с атрибутами и содержимым
   module Tag
     class << self
-      SINGLE_TAGS = %w[br img input a].freeze
+      SINGLE_TAGS = %w[br img input].freeze
 
       private_constant :SINGLE_TAGS
 
