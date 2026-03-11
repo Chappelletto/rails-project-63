@@ -11,5 +11,5 @@ def load_fixture(filename)
 end
 
 def create_user
-  Struct.new(:name, :job).new(name: 'rob', job: 'hexlet')
+  Struct.new(:name, :job, keyword_init: true).new name: 'rob', job: 'hexlet'
 end

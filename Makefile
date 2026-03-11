@@ -6,6 +6,6 @@ default: lint
 install:
 	bundle install
 lint: install
-	bundle exec standardrb
-tests:
+	bundle exec rubocop
+test:
 	rake test
