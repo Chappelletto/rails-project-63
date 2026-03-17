@@ -5,7 +5,7 @@
 
 Генератор форм – DSL, с помощью которого удобно генерировать формы. Эта библиотека берет на себя задачи, которые обычно требуют написания большого количества шаблонного кода, например, обработку ошибок.
 
-## Installation
+## Установка
 
 ```bash
 git clone https://github.com/Chappelletto/rails-project-63.git
@@ -13,8 +13,29 @@ cd rails-project-63
 make install
 ```
 
-## Usage
+## Развёртывание
 
+После клонирования репозитория выполните `bin/setup` для установки зависимостей проекта. Затем запустите `rake test` для выполнения тестов. Также вы можете запустить `bin/console` для интерактивной консоли, в которой можно экспериментировать с кодом.
+
+Чтобы установить гем локально на вашу машину, выполните `bundle exec rake install`. Для публикации новой версии обновите номер версии в файле `version.rb`, затем выполните `bundle exec rake release`
+
+Запуск линтера:
+```
+rubocop
+```
+Запуск тестов:
+```
+rake test
+```
+
+Интерактивная консоль:
+```
+bin/console
+```
+
+## Использование
+
+```
 require 'hexlet_code'
 
 User = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -24,29 +45,8 @@ HexletCode.form_for user do |f|
   f.input :name
   f.input :job, as: :text
 end
+```
 
-## Development
+## Лицензия
 
-Установка зависимостей:
-bundle exec rake install
-
-Запуск линтера:
-rubocop
-
-Запуск тестов:
-rake test
-
-Интерактивная консоль:
-bin/setup
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet_code. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the HexletCode project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/hexlet_code/blob/main/CODE_OF_CONDUCT.md).
+Данный гем доступен как открытый исходный код в соответствии с условиями лицензии.[MIT License](https://opensource.org/licenses/MIT).
